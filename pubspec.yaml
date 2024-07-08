@@ -30,6 +30,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  path_provider: ^2.1.1
+  share_plus: ^7.2.1
+  syncfusion_flutter_pdfviewer:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -40,6 +43,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: "^0.13.1"
+  flutter_lints: ^2.0.0
 
 flutter_launcher_icons:
   android: "launcher_icon"
@@ -65,7 +69,8 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/background.png
+    - assets/
+
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
