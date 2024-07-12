@@ -1,4 +1,3 @@
-// import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:path_provider/path_provider.dart';
@@ -10,169 +9,6 @@ void main() {
     home: HomeScreen(),
   ));
 }
-
-// class HomeScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: const Color.fromRGBO(1, 194, 211, 1),
-//         title: Center(
-//           child: Text("Claimease"),
-//         ),
-//       ),
-//       body: Stack(
-//         children: [
-//           Positioned.fill(
-//             child: Opacity(
-//               opacity: 0.5, // Pas deze waarde aan voor de gewenste opaciteit
-//               child: Image.asset(
-//                 'assets/images/background.png',
-//                 fit: BoxFit
-//                     .cover, // Zorgt ervoor dat de afbeelding het scherm vult
-//               ),
-//             ),
-//           ),
-//           Center(
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 const Text(
-//                   "Je tekst hier",
-//                   style: TextStyle(color: Colors.white), // Pas eventueel aan
-//                 ),
-//                 SizedBox(height: 20),
-//                 ElevatedButton.icon(
-//                   style: ElevatedButton.styleFrom(
-//                     foregroundColor: Colors.black,
-//                     backgroundColor: Colors.white, // Zwarte tekst
-//                     side: BorderSide(
-//                       color:
-//                           const Color.fromRGBO(1, 194, 211, 1), // Blauwe border
-//                       width: 2,
-//                     ),
-//                     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-//                     elevation: 5, // Schaduw voor de knop
-//                   ),
-//                   onPressed: () {
-//                     Navigator.push(
-//                       context,
-//                       MaterialPageRoute(
-//                           builder: (context) => CollisionFormScreen()),
-//                     );
-//                   },
-//                   icon: Icon(Icons.directions_car,
-//                       color: Colors.black), // Icoon voor aanrijding formulier
-//                   label: Text(
-//                     "Aanrijding Formulier",
-//                     style: TextStyle(fontWeight: FontWeight.bold),
-//                   ),
-//                 ),
-//                 SizedBox(height: 10),
-//                 ElevatedButton.icon(
-//                   style: ElevatedButton.styleFrom(
-//                     foregroundColor: Colors.black,
-//                     backgroundColor: Colors.white, // Zwarte tekst
-//                     side: BorderSide(
-//                       color:
-//                           const Color.fromRGBO(1, 194, 211, 1), // Blauwe border
-//                       width: 2,
-//                     ),
-//                     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-//                     elevation: 5, // Schaduw voor de knop
-//                   ),
-//                   onPressed: () {
-//                     Navigator.push(
-//                       context,
-//                       MaterialPageRoute(
-//                           builder: (context) => PersonalInfoScreen()),
-//                     );
-//                   },
-//                   icon: Icon(Icons.person,
-//                       color:
-//                           Colors.black), // Icoon voor persoonlijke informatie
-//                   label: Text(
-//                     "Persoonlijke Informatie",
-//                     style: TextStyle(fontWeight: FontWeight.bold),
-//                   ),
-//                 ),
-//                 SizedBox(height: 10),
-//                 ElevatedButton.icon(
-//                   style: ElevatedButton.styleFrom(
-//                     foregroundColor: Colors.black,
-//                     backgroundColor: Colors.white, // Zwarte tekst
-//                     side: BorderSide(
-//                       color:
-//                           const Color.fromRGBO(1, 194, 211, 1), // Blauwe border
-//                       width: 2,
-//                     ),
-//                     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-//                     elevation: 5, // Schaduw voor de knop
-//                   ),
-//                   onPressed: () {
-//                     Navigator.push(
-//                       context,
-//                       MaterialPageRoute(builder: (context) => InfoScreen()),
-//                     );
-//                   },
-//                   icon: Icon(Icons.info,
-//                       color: Colors.black), // Icoon voor meer informatie
-//                   label: Text(
-//                     "Meer Informatie",
-//                     style: TextStyle(fontWeight: FontWeight.bold),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-// class CollisionFormScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Aanrijding Formulier"),
-//       ),
-//       body: Center(
-//         child: Text("Aanrijding Formulier"),
-//       ),
-//     );
-//   }
-// }
-
-// class PersonalInfoScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Persoonlijke Informatie"),
-//       ),
-//       body: Center(
-//         child: Text("Persoonlijke Informatie Formulier"),
-//       ),
-//     );
-//   }
-// }
-
-// class InfoScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Meer Informatie"),
-//       ),
-//       body: Center(
-//         child:
-//             Text("Meer informatie over deze applicatie en een instructieblad."),
-//       ),
-//     );
-//   }
-// }
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -190,7 +26,7 @@ class HomeScreen extends StatelessWidget {
             child: Opacity(
               opacity: 0.5, // Pas deze waarde aan voor de gewenste opaciteit
               child: Image.asset(
-                'assets/images/background.png',
+                'assets/background.png',
                 fit: BoxFit
                     .cover, // Zorgt ervoor dat de afbeelding het scherm vult
               ),
@@ -265,8 +101,7 @@ class HomeScreen extends StatelessWidget {
                     foregroundColor: Colors.black,
                     backgroundColor: Colors.white, // Zwarte tekst
                     side: BorderSide(
-                      color:
-                          const Color.fromRGBO(1, 194, 211, 1), // Blauwe border
+                      color: Color(0xFF01C2D3), // Blauwe border
                       width: 2,
                     ),
                     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
@@ -302,8 +137,6 @@ class CollisionFormScreen extends StatelessWidget {
         title: Text("Aanrijding Formulier"),
       ),
       body: PdfFormFilling(), // De PdfFormFilling-widget toegevoegd
-      // body:
-      //     SfPdfViewer.asset("assets/Documents/aanrijdingsformulier-survam.pdf"),
     );
   }
 }
@@ -368,8 +201,12 @@ class _HomePage extends State<PdfFormFilling> {
         onPressed: () {
           _validateAndShareFormData();
         },
-        label: const Text('Share', style: TextStyle(fontSize: 20)),
-        icon: const Icon(Icons.share),
+        label: const Text(
+          'Delen',
+          style: TextStyle(fontSize: 20, color: Color(0xFFC1DEE0)),
+        ),
+        icon: const Icon(Icons.share, color: Color(0xFFC1DEE0)),
+        backgroundColor: Color(0xFF01C2D3),
       ),
     );
   }
@@ -386,7 +223,7 @@ class _HomePage extends State<PdfFormFilling> {
     final PdfFormField formField = details.formField;
     // Als het veld focus krijgt en het 'dob'-veld is, toon een DatePicker
     if (details.hasFocus) {
-      if (formField is PdfTextFormField && formField.name == 'dob') {
+      if (formField is PdfTextFormField && formField.name == 'Text1') {
         final DateTime? selectedDate = await showDatePicker(
           context: context,
           initialDate: DateTime.now(),
@@ -412,23 +249,13 @@ class _HomePage extends State<PdfFormFilling> {
     // Valideer elk formulier veld
     for (final PdfFormField formField in _formFields!) {
       if (formField is PdfTextFormField) {
-        // Valideer het 'name'-veld
-        if (formField.name == 'name') {
-          if (formField.text.isEmpty) {
-            errors.add('Naam is verplicht.');
-          } else if (formField.text.length < 3) {
-            errors.add('Naam moet minstens 3 karakters bevatten.');
-          } else if (formField.text.length > 30) {
-            errors.add('Naam mag niet langer zijn dan 30 karakters.');
-          } else if (formField.text.contains(RegExp(r'[0-9]'))) {
-            errors.add('Naam mag geen cijfers bevatten.');
-          } else if (formField.text
-              .contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-            errors.add('Naam mag geen speciale tekens bevatten.');
-          }
+        if (formField.name == 'Text4') {
+          formField.text = 'Suriname';
+        } else {
+          formField.text = 'Suriname';
         }
         // Valideer het 'dob'-veld
-        if (formField.name == 'dob') {
+        if (formField.name == 'Text1') {
           if (formField.text.isEmpty) {
             errors.add('Geboortedatum is verplicht.');
           } else if (!RegExp(r'^\d{1,2}\/\d{1,2}\/\d{4}$')
@@ -437,7 +264,7 @@ class _HomePage extends State<PdfFormFilling> {
           }
         }
         // Valideer het 'dob'-veld
-        if (formField.name == 'dob') {
+        if (formField.name == 'Text1') {
           if (formField.text.isEmpty) {
             errors.add('Geboortedatum is verplicht.');
           } else if (!RegExp(r'^\d{1,2}\/\d{1,2}\/\d{4}$')
@@ -469,42 +296,8 @@ class _HomePage extends State<PdfFormFilling> {
         }
       }
     }
-
-    // Als er fouten zijn, toon ze in een dialoogvenster
-    if (errors.isNotEmpty) {
-      await showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Error'),
-            content: SizedBox(
-              height: 100,
-              width: 100,
-              child: ListView.builder(
-                itemCount: errors.length,
-                itemBuilder: (_, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(errors[index]),
-                  );
-                },
-              ),
-            ),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
-    } else {
-      // Als er geen fouten zijn, deel het formulier
-      _shareForm();
-    }
+    // Als er geen fouten zijn, deel het formulier
+    _shareForm();
   }
 
   /// Deel het formulier extern via de deel dialoog van het platform
@@ -514,17 +307,17 @@ class _HomePage extends State<PdfFormFilling> {
     String dir = (await getApplicationCacheDirectory()).path;
 
     // Sla het tijdelijke bestand op in de cache directory
-    File('$dir/workshop_registration.pdf').writeAsBytesSync(savedBytes);
+    File('$dir/aanrijdingsformulier.pdf').writeAsBytesSync(savedBytes);
 
     List<XFile> files = [
-      XFile('$dir/workshop_registration.pdf', mimeType: 'application/pdf'),
+      XFile('$dir/aanrijdingsformulier.pdf', mimeType: 'application/pdf'),
     ];
 
     // Deel het bestand
     await Share.shareXFiles(files,
-        subject: 'Formulierdocument succesvol gedeeld.');
+        subject: 'Aanrijdingformulier succesvol gedeeld.');
 
     // Verwijder het bestand uit de cache directory
-    File('$dir/workshop_registration.pdf').deleteSync();
+    File('$dir/aanrijdingsformulier.pdf').deleteSync();
   }
 }
