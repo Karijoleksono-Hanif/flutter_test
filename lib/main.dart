@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -134,6 +135,7 @@ class CollisionFormScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(1, 194, 211, 1),
         title: Text("Aanrijding Formulier"),
       ),
       body: PdfFormFilling(), // De PdfFormFilling-widget toegevoegd
@@ -146,6 +148,7 @@ class PersonalInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(1, 194, 211, 1),
         title: Text("Persoonlijke Informatie"),
       ),
       body: Center(
@@ -160,6 +163,7 @@ class InfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(1, 194, 211, 1),
         title: Text("Meer Informatie"),
       ),
       body: Center(
@@ -249,12 +253,7 @@ class _HomePage extends State<PdfFormFilling> {
     // Valideer elk formulier veld
     for (final PdfFormField formField in _formFields!) {
       if (formField is PdfTextFormField) {
-        if (formField.name == 'Text4') {
-          formField.text = 'Suriname';
-        } else {
-          formField.text = 'Suriname';
-        }
-        // Valideer het 'dob'-veld
+        // Valideer het 'datum'-veld
         if (formField.name == 'Text1') {
           if (formField.text.isEmpty) {
             errors.add('Geboortedatum is verplicht.');
