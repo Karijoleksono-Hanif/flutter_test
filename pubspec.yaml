@@ -10,16 +10,17 @@ dependencies:
   flutter:
     sdk: flutter
   path_provider: ^2.1.1
-  share_plus: ^7.2.1
+  share_plus: ^9.0.0
   cupertino_icons: ^1.0.6
-  syncfusion_flutter_pdfviewer:
+  syncfusion_flutter_pdfviewer: ^26.2.5
+  pdf: ^3.11.0
+  image_picker: ^1.1.2
   
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: "^0.13.1"
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
 
 flutter_launcher_icons:
   android: "launcher_icon"
@@ -31,4 +32,3 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-

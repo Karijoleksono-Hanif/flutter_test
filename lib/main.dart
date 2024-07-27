@@ -1,8 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'dart:io';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -193,7 +194,7 @@ class _HomePage extends State<PdfFormFilling> {
     return Scaffold(
       // Body die de SfPdfViewer bevat
       body: SfPdfViewer.asset(
-        'assets/aanrijdingsformulier-survam.pdf',
+        'assets/aanrijdingsformulier-survam_v3.pdf',
         key: _pdfViewerKey,
         controller: _pdfViewerController,
         onFormFieldFocusChange: _onFormFieldFocusChange,
@@ -201,7 +202,7 @@ class _HomePage extends State<PdfFormFilling> {
       ),
       // Zwevende actieknop om de formuliergegevens te delen
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
+        onPressed: () async {
           _validateAndShareFormData();
         },
         label: const Text(
@@ -226,20 +227,34 @@ class _HomePage extends State<PdfFormFilling> {
     final PdfFormField formField = details.formField;
     // Als het veld focus krijgt en het 'dob'-veld is, toon een DatePicker
     if (details.hasFocus) {
-      if (formField is PdfTextFormField && formField.name == 'Text1') {
+      if (formField is PdfTextFormField &&
+          (formField.name == 'Datum' ||
+              formField.name == 'Datum1' ||
+              formField.name == 'Datum2' ||
+              formField.name == 'Datum3' ||
+              formField.name == 'Datum4' ||
+              formField.name == 'Datum5' ||
+              formField.name == 'Datum6' ||
+              formField.name == 'Datum7' ||
+              formField.name == 'Datum8' ||
+              formField.name == 'Datum9' ||
+              formField.name == 'Datum10' ||
+              formField.name == 'Datum11' ||
+              formField.name == 'Datum12' ||
+              formField.name == 'Datum13' ||
+              formField.name == 'Datum14' ||
+              formField.name == 'Datum15')) {
         final DateTime? selectedDate = await showDatePicker(
           context: context,
           initialDate: DateTime.now(),
           firstDate: DateTime(1950),
           lastDate: DateTime.now(),
         );
-
-        // Stel de geselecteerde datum in het 'dob'-veld
+        // Stel de geselecteerde datum in het 'datum'-veld
         if (selectedDate != null) {
           formField.text =
               '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
         }
-
         // Verwijder focus van het veld
         FocusManager.instance.primaryFocus?.unfocus();
       }
@@ -253,40 +268,39 @@ class _HomePage extends State<PdfFormFilling> {
     for (final PdfFormField formField in _formFields!) {
       if (formField is PdfTextFormField) {
         // Valideer het 'datum'-veld
-        if (formField.name == 'Text1') {
-          if (formField.text.isEmpty) {
-            errors.add('Geboortedatum is verplicht.');
-          } else if (!RegExp(r'^\d{1,2}\/\d{1,2}\/\d{4}$')
-              .hasMatch(formField.text)) {
-            errors.add('Geboortedatum moet in dd/mm/jjjj-formaat zijn.');
-          }
-        }
-        // Valideer het 'dob'-veld
-        if (formField.name == 'Text1') {
-          if (formField.text.isEmpty) {
-            errors.add('Geboortedatum is verplicht.');
-          } else if (!RegExp(r'^\d{1,2}\/\d{1,2}\/\d{4}$')
-              .hasMatch(formField.text)) {
-            errors.add('Geboortedatum moet in dd/mm/jjjj-formaat zijn.');
-          }
-        }
-        // Valideer het 'email'-veld
-        if (formField.name == 'email') {
-          if (formField.text.isEmpty) {
-            errors.add('E-mail is verplicht.');
-          }
-          // E-mail regex vergelijking
-          else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-              .hasMatch(formField.text)) {
-            errors.add('E-mail moet in correct formaat zijn.');
-          }
-        }
-      } else if (formField is PdfListBoxFormField) {
-        // Valideer het list box veld
-        if (formField.selectedItems == null ||
-            formField.selectedItems!.isEmpty) {
-          errors.add('Selecteer minstens één cursus.');
-        }
+        if (formField.name == 'Datum' ||
+            formField.name == 'Datum1' ||
+            formField.name == 'Datum2' ||
+            formField.name == 'Datum3' ||
+            formField.name == 'Datum4' ||
+            formField.name == 'Datum5' ||
+            formField.name == 'Datum6' ||
+            formField.name == 'Datum7' ||
+            formField.name == 'Datum8' ||
+            formField.name == 'Datum9' ||
+            formField.name == 'Datum10' ||
+            formField.name == 'Datum11' ||
+            formField.name == 'Datum12' ||
+            formField.name == 'Datum13' ||
+            formField.name == 'Datum14' ||
+            formField.name == 'Datum15')
+        // Valideer het 'datum'-veld
+        if (formField.name == 'Datum' ||
+            formField.name == 'Datum1' ||
+            formField.name == 'Datum2' ||
+            formField.name == 'Datum3' ||
+            formField.name == 'Datum4' ||
+            formField.name == 'Datum5' ||
+            formField.name == 'Datum6' ||
+            formField.name == 'Datum7' ||
+            formField.name == 'Datum8' ||
+            formField.name == 'Datum9' ||
+            formField.name == 'Datum10' ||
+            formField.name == 'Datum11' ||
+            formField.name == 'Datum12' ||
+            formField.name == 'Datum13' ||
+            formField.name == 'Datum14' ||
+            formField.name == 'Datum15') ;
       } else if (formField is PdfSignatureFormField) {
         // Valideer het handtekening veld
         if (formField.signature == null) {
@@ -313,7 +327,9 @@ class _HomePage extends State<PdfFormFilling> {
 
     // Deel het bestand
     await Share.shareXFiles(files,
-        subject: 'Aanrijdingformulier succesvol gedeeld.');
+        subject: 'Aanrijdingformulier',
+        text:
+            'Hierbij het aanrijdingsformulier en de foto s van de aanrijding.');
 
     // Verwijder het bestand uit de cache directory
     File('$dir/aanrijdingsformulier.pdf').deleteSync();
