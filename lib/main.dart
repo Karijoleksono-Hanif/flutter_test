@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
@@ -92,7 +93,7 @@ class HomeScreen extends StatelessWidget {
                       color:
                           Colors.black), // Icoon voor persoonlijke informatie
                   label: Text(
-                    "Persoonlijke Informatie",
+                    "Gebruikershandleiding",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -117,7 +118,7 @@ class HomeScreen extends StatelessWidget {
                   icon: Icon(Icons.info,
                       color: Colors.black), // Icoon voor meer informatie
                   label: Text(
-                    "Meer Informatie",
+                    "FAQ",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -149,11 +150,9 @@ class PersonalInfoScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(1, 194, 211, 1),
-        title: Text("Persoonlijke Informatie"),
+        title: Text("Gebruikers Handleiding"),
       ),
-      body: Center(
-        child: Text("Persoonlijke Informatie Formulier"),
-      ),
+      body: UserManualPage(),
     );
   }
 }
@@ -164,15 +163,14 @@ class InfoScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(1, 194, 211, 1),
-        title: Text("Meer Informatie"),
+        title: Text("FAQ (Veel gestelde vragen)"),
       ),
-      body: Center(
-        child:
-            Text("Meer informatie over deze applicatie en een instructieblad."),
-      ),
+      body: QuestionnairePage(),
     );
   }
 }
+
+//--------------------END HOME SCREEN-------------------------------------
 
 // Vertegenwoordigt de SfPdfViewer-widget geladen met een formulierdocument
 class PdfFormFilling extends StatefulWidget {
@@ -225,7 +223,7 @@ class _HomePage extends State<PdfFormFilling> {
   Future<void> _onFormFieldFocusChange(
       PdfFormFieldFocusChangeDetails details) async {
     final PdfFormField formField = details.formField;
-    // Als het veld focus krijgt en het 'dob'-veld is, toon een DatePicker
+    // Als het veld focus krijgt en het 'datum'-veld is, toon een DatePicker
     if (details.hasFocus) {
       if (formField is PdfTextFormField &&
           (formField.name == 'Datum' ||
@@ -303,9 +301,6 @@ class _HomePage extends State<PdfFormFilling> {
             formField.name == 'Datum15') ;
       } else if (formField is PdfSignatureFormField) {
         // Valideer het handtekening veld
-        if (formField.signature == null) {
-          errors.add('Onderteken het document.');
-        }
       }
     }
     // Als er geen fouten zijn, deel het formulier
@@ -335,3 +330,182 @@ class _HomePage extends State<PdfFormFilling> {
     File('$dir/aanrijdingsformulier.pdf').deleteSync();
   }
 }
+
+//--------------------USER MANUAL-------------------------------------
+
+class UserManualPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.all(16.0),
+        child: ListView(
+          children: [
+            Text(
+              'Gebruikershandleiding voor de Verkeersongevallen App',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 16),
+            UserManualStep(
+              step: 'Stap 1: Kies ‘Aanrijdings formulier’',
+              description:
+                  'Open de app en selecteer de optie ‘Aanrijdengs Formulier’ om te beginnen met het invullen van het ongelukken formulier.',
+            ),
+            UserManualStep(
+              step: 'Stap 2: Vul het formulier in met de juiste informatie',
+              description:
+                  'Beantwoord de vragen in de app zorgvuldig. Je zult verschillende soorten vragen tegenkomen, zoals:',
+              subSteps: [
+                'Ja/Nee vragen',
+                'Vragen waarbij je tekst kunt invoeren (bijvoorbeeld naam, adres, telefoonnummer)',
+                'Vragen met checkboxen om specifieke informatie aan te geven',
+                'Vragen waar U zal moeten tekenen',
+              ],
+            ),
+            UserManualStep(
+              step: 'Stap 3: Dubbelcheck of alle informatie correct is',
+              description:
+                  'Neem de tijd om je antwoorden nogmaals te controleren. Zorg ervoor dat alle informatie die je hebt ingevuld juist en volledig is.',
+            ),
+            UserManualStep(
+              step: 'Stap 4: Sla het formulier op als een PDF op uw telefoon',
+              description:
+                  'Nadat je alle vragen hebt beantwoord en gecontroleerd, sla je het ingevulde formulier op als een PDF-bestand op je telefoon. Deze optie zal beschikbaar zijn nadat je alle stappen hebt doorlopen.\n\nVoor het downloaden van een pdf moet u de volgende stappen volgen:',
+              subSteps: [
+                'Klik op het “Delen” knopje',
+                'Druk up het “Print” icoontje',
+                'Druk op het “PDF” icoontje dat verschijnt aan de bovenkant van de pagina',
+                'Sla het op in uw telefoon in het mapje dat u kiest',
+              ],
+            ),
+            UserManualStep(
+              step: 'Stap 5: Het versturen is uw eigen verantwoordelijkheid',
+              description:
+                  'Het versturen van het ingevulde formulier naar je verzekeringsmaatschappij is je eigen verantwoordelijkheid. Je kunt dit bijvoorbeeld doen door de PDF via whatsapp te versturen. Zorg ervoor dat je een internetverbinding hebt om het bestand te kunnen versturen.',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class UserManualStep extends StatelessWidget {
+  final String step;
+  final String description;
+  final List<String>? subSteps;
+
+  UserManualStep(
+      {required this.step, required this.description, this.subSteps});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          step,
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 8),
+        Text(
+          description,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+          ),
+        ),
+        if (subSteps != null)
+          ...subSteps!.map((subStep) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                child: Text(
+                  '• $subStep',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              )),
+        SizedBox(height: 16),
+      ],
+    );
+  }
+}
+
+//--------------------QuestionnairePage-------------------------------------
+
+class QuestionnairePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.all(16.0),
+        child: ListView(
+          children: [
+            SizedBox(height: 16),
+            FAQItem(
+              question: 'Wat is de app?',
+              answer:
+                  'De app is een handig hulpmiddel waarmee je een ongelukken formulier kunt invullen op je telefoon. Na het invullen kun je het formulier downloaden en vervolgens versturen naar je verzekeringsmaatschappij.',
+            ),
+            FAQItem(
+              question: 'Hoe gebruik ik de app?',
+              answer:
+                  'Je kunt de app gebruiken door vragen te beantwoorden over het ongeluk. Er zijn verschillende soorten vragen, zoals ja/nee-vragen, tekstvelden voor details en checkboxen voor specifieke informatie. Vul de informatie over het ongeluk nauwkeurig in om een volledig en correct formulier te krijgen.',
+            ),
+            FAQItem(
+              question: 'Hoe verstuur ik mijn ingevulde formulier?',
+              answer:
+                  'Nadat je alle vragen hebt beantwoord, kun je het ingevulde formulier downloaden als een PDF-bestand. Het versturen van het formulier naar je verzekeringsmaatschappij ligt vervolgens in jouw handen. Je kunt de PDF bijvoorbeeld via e-mail versturen.',
+            ),
+            FAQItem(
+              question: 'Heb ik internet nodig voor deze app?',
+              answer:
+                  'Nee, de app werkt volledig offline. Je hebt geen internetverbinding nodig om het formulier in te vullen en op te slaan. Het versturen van de ingevulde PDF naar je verzekeringsmaatschappij vereist echter wel een internetverbinding, maar dat moet je zelf regelen op het moment van versturen.',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class FAQItem extends StatelessWidget {
+  final String question;
+  final String answer;
+
+  FAQItem({required this.question, required this.answer});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          question,
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 8),
+        Text(
+          answer,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+          ),
+        ),
+        SizedBox(height: 16),
+      ],
+    );
+  }
+}
+
+//--------------------------test code ------------------------------------------------
