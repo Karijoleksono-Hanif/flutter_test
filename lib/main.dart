@@ -1,6 +1,5 @@
 import 'dart:io';
-import 'dart:typed_data';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -205,9 +204,11 @@ class _HomePage extends State<PdfFormFilling> {
         },
         label: const Text(
           'Delen',
-          style: TextStyle(fontSize: 20, color: Color(0xFFC1DEE0)),
+          style: TextStyle(
+              fontSize: 20, color: Color.fromARGB(255, 255, 255, 255)),
         ),
-        icon: const Icon(Icons.share, color: Color(0xFFC1DEE0)),
+        icon:
+            const Icon(Icons.share, color: Color.fromARGB(255, 255, 255, 255)),
         backgroundColor: Color(0xFF01C2D3),
       ),
     );
@@ -468,6 +469,32 @@ class QuestionnairePage extends StatelessWidget {
               question: 'Heb ik internet nodig voor deze app?',
               answer:
                   'Nee, de app werkt volledig offline. Je hebt geen internetverbinding nodig om het formulier in te vullen en op te slaan. Het versturen van de ingevulde PDF naar je verzekeringsmaatschappij vereist echter wel een internetverbinding, maar dat moet je zelf regelen op het moment van versturen.',
+            ),
+            SizedBox(height: 16),
+            ElevatedButton.icon(
+              onPressed: () async {
+                const url = 'https://forms.office.com/r/jwF42ckHHE';
+                // ignore: deprecated_member_use
+                if (await canLaunch(url)) {
+                  // ignore: deprecated_member_use
+                  await launch(url);
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
+              icon: Icon(Icons.feedback,
+                  color: Color.fromARGB(255, 255, 255, 255)),
+              label: Text(
+                'Feedback',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color.fromARGB(255, 255, 255, 255),
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFF01C2D3), // Achtergrondkleur
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              ),
             ),
           ],
         ),
